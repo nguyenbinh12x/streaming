@@ -34,6 +34,7 @@ This guide install ffmpeg on Ubuntu OS. See more than above link.
 Main steps to install ffmpeg as following:
 
 *Get the Dependencies:*
+
 ```
 sudo apt-get update
 sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
@@ -42,6 +43,7 @@ sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype
 ```
 
 *Installation lib dependencies:*
+
 See more than this link http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 Yasm
 	libx264
@@ -56,7 +58,8 @@ Yasm
 	libogg
 	ffmpeg
 
-*Installation nginx with nginx-rtmp-module: *
+*Installation nginx with nginx-rtmp-module:*
+
 https://github.com/arut/nginx-rtmp-module
 
 ```
