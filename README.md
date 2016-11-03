@@ -23,8 +23,9 @@ Wowza Streaming Engine powers streaming of high-quality video and audio to any d
 
 *References*:
 
-[1]. http://www.webmproject.org\n
-[2]. https://www.ffmpeg.org
+http://www.webmproject.org
+
+https://www.ffmpeg.org
 
 
 ## How to build Steaming System
