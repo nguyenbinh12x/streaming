@@ -11,7 +11,7 @@ Live streaming refers to Internet content delivered in real-time, as events happ
 HTTP Live Streaming (also known as HLS) is an HTTP-based media streaming communications protocol implemented by Apple Inc.
 Wowza Streaming Engine powers streaming of high-quality video and audio to any device, anywhere.
 
- The name of the project is inspired by the MPEG video standards group, together with "FF" for "fast forward"FFmpeg is a free software project that produces libraries and programs for handling multimedia data.
+The name of the project is inspired by the MPEG video standards group, together with "FF" for "fast forward"FFmpeg is a free software project that produces libraries and programs for handling multimedia data.
 
 
 *File format*
@@ -20,14 +20,61 @@ Wowza Streaming Engine powers streaming of high-quality video and audio to any d
 -> WebM is a video file format. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio. YouTube offers WebM videos as part of its HTML5 player
 
 
-
 *References*:
 
 http://www.webmproject.org
 https://www.ffmpeg.org
+http://trac.ffmpeg.org/wiki
+https://github.com/arut/nginx-rtmp-module
+http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
 ## How to build Steaming System
 
+This guide install ffmpeg on Ubuntu OS. See more than above link.
+Main steps to install ffmpeg as following:
+
+*Get the Dependencies:*
+```
+sudo apt-get update
+sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
+  libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
+  libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+```
+
+*Installation lib dependencies:*
+See more than this link http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+Yasm
+	libx264
+	libfdk-aac
+	libmp3lame
+	libopus
+	libvpx
+	xvid
+	libtheora
+	aacenc
+	libvorbic
+	libogg
+	ffmpeg
+
+*Installation nginx with nginx-rtmp-module: *
+https://github.com/arut/nginx-rtmp-module
+
+```
+wget http://nginx.org/download/nginx-1.6.2.tar.gz
+tar -zxvf nginx-1.6.2.tar.gz
+
+git clone https://github.com/arut/nginx-rtmp-module.git
+cd nginx-1.6.2
+./configure --add-module=../nginx-rtmp-module --with-http_ssl_module --with-http_gzip_static_module --with-poll_module
+make
+make install
+
+```
+
 
 ## Using Ansible to deploy one streaming system
+
+Some sample files for deployment ffmpeg
+
+
 
