@@ -77,7 +77,15 @@ make install
 
 ## Using Ansible to deploy one streaming system
 
-Some sample files for deployment ffmpeg
+Assumption is running on ubuntu os, we have some components as:
++ ubuntu os
++ install lib dependencies
++ install ffmpeg
++ install nginx with nginx-rtmp-module
++ streaming with player
 
-
-
+Sample files as 
+```
+group_vars
+roles
+```
