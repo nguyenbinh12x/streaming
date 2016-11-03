@@ -45,7 +45,8 @@ sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype
 *Installation lib dependencies:*
 
 See more than this link http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-Yasm
+```
+	Yasm
 	libx264
 	libfdk-aac
 	libmp3lame
@@ -57,7 +58,7 @@ Yasm
 	libvorbic
 	libogg
 	ffmpeg
-
+```
 *Installation nginx with nginx-rtmp-module:*
 
 https://github.com/arut/nginx-rtmp-module
