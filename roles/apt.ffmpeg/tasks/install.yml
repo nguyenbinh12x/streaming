@@ -1,0 +1,17 @@
+---
+
+- name: Download ffmpeg
+  get_url: url={{ ffmpeg_download }}/{{ ffmpeg_version }}.tar.bz2 dest={{ ffmpeg_sources }}/{{ ffmpeg_version }}.tar.bz2
+  sudo: yes
+  
+- name: Unpack ffmpeg
+  unarchive: src={{ ffmpeg_sources }}/{{ ffmpeg_version }}.tar.bz2 dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation ffmpeg
+  shell: 'chdir={{ ffmpeg_sources }}/ffmpeg {{ item }}'
+  with_items:
+    - 'PATH="$PATH:{{ bin }}" PKG_CONFIG_PATH="{{ ffmpeg_build }}/lib/pkgconfig" ./configure  --prefix="{{ ffmpeg_build }}" --extra-cflags="-I {{ ffmpeg_build }}/include" --extra-ldflags="-L {{ ffmpeg_build }}/lib" --bindir="{{ bin }}" --enable-version3 --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --enable-libfaac'
+    - 'PATH="$PATH:{{ bin }}" make'
+    - 'make install'
+  sudo: yes

@@ -1,0 +1,8 @@
+---
+- name: Create installation source folder
+  file: path={{ item }} state=directory
+  with_items:
+    - '{{ ffmpeg_sources }}'
+    - '{{ ffmpeg_build }}'
+    - '{{ bin }}'
+  sudo: yes

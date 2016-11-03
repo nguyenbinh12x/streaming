@@ -1,0 +1,26 @@
+---
+- name: Download etc.nginx
+  git: repo={{ etc_nginx_repo }} dest=/etc/nginx version=master 
+  sudo: yes
+  
+- name: Copy files to nginx
+  template: src={{ item.src }} dest={{ item.dst }} owner=root group=root mode=644
+  with_items:
+    - {src: "fastcgi.conf.j2", dst: "/etc/nginx/fastcgi.conf" }
+  sudo: yes
+  
+- name: Copy site file
+  template: src={{ item.src }} dest={{ item.dst }} owner=root group=root mode=644
+  with_items:
+    - { src: 'nginx.conf.j2', dst: '/etc/nginx/nginx.conf'}
+    - { src: 'site.conf.j2', dst: '/etc/nginx/sites-available/site.conf'}
+    - { src: 'site_ssl.conf.j2', dst: '/etc/nginx/sites-available/site_ssl.conf'}
+  when: nginx_no_cached
+
+- name: Create symlink site to sites-enabled
+  file: src=/etc/nginx/sites-available/{{ item.src }} dest=/etc/nginx/sites-enabled/{{ item.dst }} state=link owner=root group=root
+  with_items:
+    - { src: 'site.conf', dst: 'site.conf' }
+    - { src: 'site_ssl.conf', dst: 'site_ssl.conf' }
+  when: nginx_no_cached
+  sudo: yes

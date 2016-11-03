@@ -1,0 +1,12 @@
+---
+  - include: 1_cache.yml
+  - include: 2_install_yasm.yml
+  - include: 3_install_libx264.yml
+  - include: 4_install_libfdk_aac.yml
+  - include: 5_install_libmp3lame.yml
+  - include: 6_install_libopus.yml
+  - include: 7_install_libvpx.yml
+  - include: 8_install_xvid.yml
+  - include: 9_install_libogg.yml
+  - include: 10_install_libvorbis.yml
+  - include: 12_install_libtheora.yml

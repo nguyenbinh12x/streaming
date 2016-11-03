@@ -1,0 +1,12 @@
+---
+
+- name: Added FFmpeg man
+  template: src=manpath.j2 dest=/home/{{ web_user }}/.manpath
+  sudo: yes
+  
+- name: Add some more enve
+  shell: '{{ item }}'
+  with_items: 
+    - '. /home/{{ web_user }}/.profile'
+    - 'ldconfig'
+  sudo: yes

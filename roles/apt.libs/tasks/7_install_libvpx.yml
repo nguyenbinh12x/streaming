@@ -1,0 +1,16 @@
+---
+- name: Download libvpx
+  get_url: url={{ libvpx_download }}/{{ libvpx_version }}.tar.bz2 dest={{ ffmpeg_sources }}/{{ libvpx_version }}.tar.bz2
+  sudo: yes
+  
+- name: Unpack libvpx
+  unarchive: src={{ ffmpeg_sources }}/{{ libvpx_version }}.tar.bz2 dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libvpx
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libvpx_version }} {{ item }}'
+  with_items:
+    - 'PATH="$PATH:{{ bin }}" ./configure --prefix="{{ ffmpeg_build }}" --disable-examples'
+    - 'PATH="$PATH:{{ bin }}" make'
+    - 'make install'
+  sudo: yes

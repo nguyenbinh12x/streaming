@@ -1,0 +1,16 @@
+---
+- name: Download xvid
+  get_url: url={{ xvid_download }}/{{ xvid_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ xvid_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack xvid
+  unarchive: src={{ ffmpeg_sources }}/{{ xvid_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation xvid
+  shell: 'chdir={{ ffmpeg_sources }}/xvidcore/build/generic {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}"'
+    - 'make'
+    - 'make install'
+  sudo: yes

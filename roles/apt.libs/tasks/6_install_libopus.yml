@@ -1,0 +1,16 @@
+---
+- name: Download libopus
+  get_url: url={{ libopus_download }}/{{ libopus_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ libopus_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack libopus
+  unarchive: src={{ ffmpeg_sources }}/{{ libopus_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libopus
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libopus_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --disable-shared'
+    - 'make'
+    - 'make install'
+  sudo: yes

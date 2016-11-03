@@ -1,0 +1,23 @@
+---
+
+- stat: path={{ ffmpeg_sources }}/{{ libvorbis_version }}.tar.gz
+  register: libvorbis
+  
+- debug: msg="Untar libvorbis is {{ libvorbis }}"
+  
+- name: Download libvorbis
+  get_url: url={{ libvorbis_download }}/{{ libvorbis_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ libvorbis_version }}.tar.gz
+  when: libvorbis.stat.exists == False
+  sudo: yes
+  
+- name: Unpack libvorbis
+  unarchive: src={{ ffmpeg_sources }}/{{ libvorbis_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libvorbis
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libvorbis_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --with-ogg="{{ ffmpeg_build }}" --disable-shared'
+    - 'make'
+    - 'make install'
+  sudo: yes

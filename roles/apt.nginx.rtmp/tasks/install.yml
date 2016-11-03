@@ -1,0 +1,21 @@
+---
+
+- name: Download nginx-rtmp-module
+  git: repo={{ nginx_rtmp_repo }} dest={{ ffmpeg_sources }}/{{ nginx_rtmp_version }} version=master
+  sudo: yes
+  
+- name: Download nginx
+  get_url: url={{ nginx_download }}/{{ nginx_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ nginx_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack nginx
+  unarchive: src={{ ffmpeg_sources }}/{{ nginx_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+
+- name: Installation nginx with rtmp module
+  shell: 'chdir={{ ffmpeg_sources }}/{{ nginx_version }} {{ item }}'
+  with_items:
+    - './configure --add-module={{ ffmpeg_sources }}/nginx-rtmp-module --with-http_ssl_module --with-http_gzip_static_module --with-poll_module'
+    - 'make'
+    - 'make install'
+  sudo: yes

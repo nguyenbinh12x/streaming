@@ -1,0 +1,17 @@
+---
+
+- name: Download libx264
+  get_url: url={{ libx264_download }}/{{ libx264_version }}.tar.bz2 dest={{ ffmpeg_sources }}/{{ libx264_version }}.tar.bz2
+  sudo: yes
+  
+- name: Unpack libx264
+  unarchive: src={{ ffmpeg_sources }}/{{ libx264_version }}.tar.bz2 dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libx264
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libx264_version }} {{ item }}'
+  with_items:
+    - 'PATH="$PATH:{{ bin }}" ./configure --prefix="{{ ffmpeg_build }}" --bindir="{{ bin }}" --enable-static'
+    - 'PATH="$PATH:{{ bin }}" make'
+    - 'make install'
+  sudo: yes

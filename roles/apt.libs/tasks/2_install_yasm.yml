@@ -1,0 +1,17 @@
+---
+
+- name: Download Yasm
+  get_url: url={{ yasm_download }}/{{ yasm_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ yasm_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack Yasm
+  unarchive: src={{ ffmpeg_sources }}/{{ yasm_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation Yasm
+  shell: 'chdir={{ ffmpeg_sources }}/{{ yasm_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --bindir="{{ bin }}"'
+    - 'make'
+    - 'make install'
+  sudo: yes

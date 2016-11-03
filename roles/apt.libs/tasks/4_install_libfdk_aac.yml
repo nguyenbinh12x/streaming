@@ -1,0 +1,13 @@
+---
+- name: Download libfdk-aac
+  git: repo={{ libfdk_aac_repo }} dest={{ ffmpeg_sources }}/{{ libfdk_aac_version }} version=master
+  sudo: yes
+  
+- name: Installation libfdk-aac
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libfdk_aac_version }} {{ item }}'
+  with_items:
+    - 'autoreconf -fiv'
+    - './configure --prefix="{{ ffmpeg_build }}" --disable-shared'
+    - 'make'
+    - 'make install'
+  sudo: yes

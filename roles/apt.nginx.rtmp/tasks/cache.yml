@@ -1,0 +1,8 @@
+---
+
+- name: Copy key files in
+  copy: src={{ item.start }} dest={{ item.end }} owner=root group=root mode=644
+  with_items:
+    - {start: "nginx.crt", end: "/etc/ssl/certs/nginx.crt" }
+    - {start: "nginx.key", end: "/etc/ssl/private/nginx.key" }
+  sudo: yes

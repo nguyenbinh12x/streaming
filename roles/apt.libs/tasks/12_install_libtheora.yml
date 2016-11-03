@@ -1,0 +1,23 @@
+---
+
+- stat: path={{ ffmpeg_sources }}/{{ libtheora_version }}.tar.gz
+  register: libtheora
+  
+- debug: msg="Untar libtheora is {{ libtheora }}"
+  
+- name: Download libtheora
+  get_url: url={{ libtheora_download }}/{{ libtheora_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ libtheora_version }}.tar.gz
+  when: libtheora.stat.exists == False
+  sudo: yes
+  
+- name: Unpack libtheora
+  unarchive: src={{ ffmpeg_sources }}/{{ libtheora_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libtheora
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libtheora_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --with-ogg="{{ ffmpeg_build }}" --disable-examples --disable-shared --disable-sdltest --disable-vorbistest'
+    - 'make'
+    - 'make install'
+  sudo: yes

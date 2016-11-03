@@ -1,0 +1,16 @@
+---
+- name: Download libmp3lame
+  get_url: url={{ libmp3lame_download }}/{{ libmp3lame_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ libmp3lame_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack libmp3lame
+  unarchive: src={{ ffmpeg_sources }}/{{ libmp3lame_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libmp3lame
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libmp3lame_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --enable-nasm --disable-shared'
+    - 'make'
+    - 'make install'
+  sudo: yes

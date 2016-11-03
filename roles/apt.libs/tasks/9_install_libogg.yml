@@ -1,0 +1,16 @@
+---
+- name: Download libogg
+  get_url: url={{ libogg_download }}/{{ libogg_version }}.tar.gz dest={{ ffmpeg_sources }}/{{ libogg_version }}.tar.gz
+  sudo: yes
+  
+- name: Unpack libogg
+  unarchive: src={{ ffmpeg_sources }}/{{ libogg_version }}.tar.gz dest={{ ffmpeg_sources }}/
+  sudo: yes
+  
+- name: Installation libogg
+  shell: 'chdir={{ ffmpeg_sources }}/{{ libogg_version }} {{ item }}'
+  with_items:
+    - './configure --prefix="{{ ffmpeg_build }}" --disable-shared'
+    - 'make'
+    - 'make install'
+  sudo: yes
