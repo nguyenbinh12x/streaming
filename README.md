@@ -27,7 +27,7 @@ The name of the project is inspired by the MPEG video standards group, together 
 [4]. https://github.com/arut/nginx-rtmp-module
 [5]. http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 ```
-## How to build Steaming System
+## How to build Streaming System
 
 This guide install ffmpeg on Ubuntu OS. See more than above link.
 Main steps to install ffmpeg as following:
