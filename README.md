@@ -19,7 +19,6 @@ The name of the project is inspired by the MPEG video standards group, together 
 
 -> WebM is a video file format. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio. YouTube offers WebM videos as part of its HTML5 player
 
-
 *References*:
 
 http://www.webmproject.org
