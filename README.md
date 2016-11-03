@@ -21,11 +21,11 @@ The name of the project is inspired by the MPEG video standards group, together 
 
 *References*:
 ```
-http://www.webmproject.org
-https://www.ffmpeg.org
-http://trac.ffmpeg.org/wiki
-https://github.com/arut/nginx-rtmp-module
-http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+[1]. http://www.webmproject.org
+[2]. https://www.ffmpeg.org
+[3]. http://trac.ffmpeg.org/wiki
+[4]. https://github.com/arut/nginx-rtmp-module
+[5]. http://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 ```
 ## How to build Steaming System
 
