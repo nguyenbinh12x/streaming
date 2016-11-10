@@ -86,6 +86,6 @@ Assumption is running on ubuntu os, we have some components as:
 
 Sample files as 
 ```
-group_vars
+vars
 roles
 ```
